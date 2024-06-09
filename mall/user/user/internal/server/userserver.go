@@ -26,3 +26,7 @@ func (s *UserServer) GetUser(ctx context.Context, in *user.IdRequest) (*user.Use
 	l := logic.NewGetUserLogic(ctx, s.svcCtx)
 	return l.GetUser(in)
 }
+func (s *UserServer) SaveUser(ctx context.Context, in *user.UserRequest) (*user.UserResponse, error) {
+	l := logic.NewSaveUserLogic(ctx, s.svcCtx)
+	return l.SaveUser(in)
+}

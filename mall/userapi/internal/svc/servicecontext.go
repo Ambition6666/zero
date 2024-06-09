@@ -2,8 +2,8 @@ package svc
 
 import (
 	"github.com/zeromicro/go-zero/zrpc"
-	"order/order/internal/config"
 	"rpc_client/userclient"
+	"userapi/internal/config"
 )
 
 type ServiceContext struct {

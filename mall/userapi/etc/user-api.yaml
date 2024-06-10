@@ -7,3 +7,7 @@ UserRpc:
     Hosts:
       - 192.168.40.134:2379
     Key: user.rpc
+
+Auth:
+  AccessSecret: "ztyyyds666"
+  AccessExpire: 604800

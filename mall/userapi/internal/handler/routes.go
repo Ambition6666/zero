@@ -10,18 +10,38 @@ import (
 )
 
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
+	handler := NewHandler(serverCtx)
+
+	// 全局中间件
+	server.Use(serverCtx.MiddlerWare.LoginAndReg)
+
+	server.AddRoutes(
+		// 局部中间件
+		rest.WithMiddlewares(
+			//[]rest.Middleware{
+			//	serverCtx.MiddlerWare.LoginAndReg,
+			//},
+			nil,
+			rest.Route{
+					Method:  http.MethodPost,
+					Path:    "/register",
+					Handler: handler.Register(),
+			},
+			rest.Route{
+					Method:  http.MethodPost,
+					Path:    "/login",
+					Handler: handler.Login(),
+
+			},
+		),
+	)
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				Method:  http.MethodPost,
-				Path:    "/register",
-				Handler: UserapiHandler(serverCtx),
-			},
-			{
 				Method:  http.MethodGet,
 				Path:    "/api/get/:id",
-				Handler: GetUserHandler(serverCtx),
+				Handler: handler.GetUser(),
 			},
-		},
+		}, rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 	)
 }

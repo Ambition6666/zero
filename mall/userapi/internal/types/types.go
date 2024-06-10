@@ -15,4 +15,7 @@ type IdRequest struct {
 	Id string `path:"id"`
 }
 
-
+type LoginRequest struct {
+	username string `json:"username"`
+	password string `json:"password"`
+}

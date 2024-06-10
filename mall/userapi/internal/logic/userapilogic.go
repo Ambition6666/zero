@@ -37,3 +37,19 @@ func (l *UserapiLogic) Register(req *types.Request) (resp *types.Response, err e
 	resp.Message = "注册成功"
 	return
 }
+
+func (l *UserapiLogic) GetUser(t *types.IdRequest) (resp *types.Response, err error) {
+	userResponse, err := l.svcCtx.UserRpc.GetUser(context.Background(), &user.IdRequest{
+		Id: t.Id,
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	resp = &types.Response{
+		Message: "获取成功",
+		Data:    userResponse,
+	}
+	return
+}

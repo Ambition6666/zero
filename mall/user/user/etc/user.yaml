@@ -8,3 +8,7 @@ Etcd:
 Mysql:
   DataSource: root:123456@tcp(127.0.0.1:3306)/zero_mall?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 
+CacheRedis:
+  - Host: 192.168.40.134:6379
+    Type: node
+    Pass: dream

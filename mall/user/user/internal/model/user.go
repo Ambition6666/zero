@@ -6,6 +6,6 @@ type User struct {
 	Id     int64
 }
 
-func (u User) TableName() string {
+func (u *User) TableName() string {
 	return "user"
 }
